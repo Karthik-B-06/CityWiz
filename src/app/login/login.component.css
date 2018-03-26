@@ -1,0 +1,37 @@
+.background {
+    background-image: url("https://images.unsplash.com/photo-1521809363061-6b28326e9c02?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e27fe6de678aba3d1a0046e06bcabf79&auto=format&fit=crop&w=1868&q=80");
+    height: 1000px;
+    width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .6;
+}
+
+.card {
+    margin-top: 200px;
+    background-image: url("https://images.unsplash.com/photo-1521809363061-6b28326e9c02?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e27fe6de678aba3d1a0046e06bcabf79&auto=format&fit=crop&w=1868&q=80");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+h5 {
+    font-family: 'Maven Pro', sans-serif;
+}
+
+h4 {
+    font-family: 'Titillium Web', sans-serif;
+}
+h6 {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 20px;
+}
+
+button {
+    padding: 0px;
+    width: 274px;
+}
