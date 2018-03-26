@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
+import { UserpageComponent } from './userpage/userpage.component';
 export const AppRoutes: Routes = [
     {
         path: '',
@@ -16,6 +17,10 @@ export const AppRoutes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
+    }, 
+    {
+        path: 'user',
+        component: UserpageComponent
     }
 
 ];

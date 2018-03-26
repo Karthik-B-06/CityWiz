@@ -42,12 +42,20 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { GoogleSigninComponent } from './login/login.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {User} from './_models/user';
+import { environment } from '../environments/environment';
+import { UserpageComponent } from './userpage/userpage.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainpageComponent,
-    GoogleSigninComponent
+    GoogleSigninComponent,
+    UserpageComponent
   ],
   imports: [
     MatSidenavModule,
@@ -82,9 +90,11 @@ import { GoogleSigninComponent } from './login/login.component';
     MatInputModule,
     HttpModule,
     MatListModule,
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+    AngularFireModule.initializeApp(environment.firebase, 'My-Project'),
+    AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [User],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

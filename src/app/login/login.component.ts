@@ -1,13 +1,13 @@
-import { Component, OnInit, AfterViewInit,ElementRef } from '@angular/core';
-
+import { Component, OnInit, AfterViewInit,ElementRef } from '@angular/core'
 import { AppComponent } from '../app.component';
 import { Http } from '@angular/http';
-
+import { AngularFireDatabase } from 'angularfire2/database';
+import {Router} from "@angular/router";
 declare const gapi: any;
 
 @Component({
   selector: 'google-signin',
-  template: '<button id="googleBtn" class="loginBtn loginBtn--google">Google</button>',
+  template: '<button (click)=stepIn() id="googleBtn" class="loginBtn loginBtn--google">Enter using Google</button>',
   styles: [ 
     `.loginBtn {
     box-sizing: border-box;
@@ -60,7 +60,8 @@ declare const gapi: any;
 export class GoogleSigninComponent implements AfterViewInit {
 
   private clientId:string = '1086524363400-ia4hs2qee3ovd3c1g4cltak68eip1pfp.apps.googleusercontent.com';
-  
+  public stepIn() {
+  }
   private scope = [
     'profile',
     'email',
@@ -81,11 +82,13 @@ export class GoogleSigninComponent implements AfterViewInit {
       that.attachSignin(that.element.nativeElement.firstChild);
     });
   }
+  
   public attachSignin(element) {
     let that = this;
+    
+
     this.auth2.attachClickHandler(element, {},
       function (googleUser) {
-
         let profile = googleUser.getBasicProfile();
         console.log('Token || ' + googleUser.getAuthResponse().id_token);
         console.log('ID: ' + profile.getId());
@@ -93,20 +96,28 @@ export class GoogleSigninComponent implements AfterViewInit {
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
         //YOUR CODE HERE
-
-
+        
+        localStorage.setItem("Id", profile.getId());
+        localStorage.setItem("Name", profile.getName());
+        localStorage.setItem("ImageUrl", profile.getImageUrl());
+        localStorage.setItem("Email", profile.getEmail());
+        
       }, function (error) {
         console.log(JSON.stringify(error, undefined, 2));
+        this.router.navigate(['login']);
       });
+      
   }
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, private router: Router) {
+    
     console.log('ElementRef: ', this.element);
   }
 
   ngAfterViewInit() {
     this.googleInit();
   }
+
 
 }
 
