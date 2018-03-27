@@ -28,7 +28,9 @@ export class AuthService {
     getUser() {
       return new User(this.userDetails.displayName, this.userDetails.photoURL, this.userDetails.email);
     }
-  
+   getValue() {
+     return this.userDetails.isAnonymous;
+   }
     signInWithGoogle() {
       return this._firebaseAuth.auth.signInWithPopup(
         new firebase.auth.GoogleAuthProvider()

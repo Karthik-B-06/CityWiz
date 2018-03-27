@@ -26,17 +26,11 @@ export class LoginComponent implements OnInit {
     }
     else {
       this.service.signInWithGoogle();
-      
-      if(this.isLoggedIn) {
-        setTimeout( function(){
-          alert("Successfully Signed in ! Login using Google Now ..");
-        },10000 );
-        
-      }
     }
-    while(!this.isLoggedIn)
-      this.isLoggedIn = this.service.isLoggedIn();
-      console.log(this.isLoggedIn);                                                                                             
+    setTimeout(function() {
+      alert("Signed in Successfully, Log in using Google now !");
+    }, 30000);
+                                                       
   }
 
 }
