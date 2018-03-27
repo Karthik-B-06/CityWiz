@@ -1,70 +1,97 @@
-
-
-<div class="background">
-        <br>
-       <div class="row">
-           <div class="col"></div>
-           <div class="col">
-                <div class="card">
-                        <div class="card-body">
-                            <div class="card-header">
-                                 <h3 style="color:white; font-size:40px; font-family: 'Orbitron', sans-serif; text-align:center;">
-                                         Login
-                                 </h3>
-                            </div>
-                            <div class="card-text">
-                                <form>
-                                        <div class="form-group">
-                                                <label><h4>Username</h4></label>
-                                                <input style="opacity:.5;" type="email" class="form-control" placeholder="Enter email">
-                                        </div>
-                                        <div class="form-group">
-                                                <label><h4>Password</h4></label>
-                                                <input style="opacity:.5;" type="password" class="form-control" placeholder="Password">
-                                        </div>
-                                        <div style="float:left;" class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label"><h4 style="color:white;">Keep me Logged in</h4></label>
-                                        </div>
-                                        <div>
-                                                        <a style="float:right;" href="#"> <h4 style="color:white;">Forgot Password </h4></a>
-                                        </div>
-                                        <br>
-                                        <br>
-                                        <button style="display: block;
-                                                        margin-left: auto;
-                                                        margin-right: auto;
-                                                        text-align: center;" type="submit" class="btn btn-primary"><h5>Submit</h5></button>
-                                </form>
-                                <br>
-                                <br>
-                                <label style="text-align:center; display: block; margin-left: auto;margin-right: auto; color:white;"><h6> Or <br> Sign In Using </h6></label>
-                                <div style="display: block;
+<div>
+        <div class="main-1">
+                <br>
+                <br>
+                <img src="assets/citywiz.jpg" style="text-align:center;
+                                        display: block;
                                         margin-left: auto;
-                                        margin-right: auto;
-                                        text-align: center;"> 
+                                        margin-right: auto; 
+                                        width:360px; 
+                                        height:310px; 
+                                        opacity: .8">
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col">
+                                    <div class="card border-dark mb-3" >
+                                            <div class="card-header">Your Relocation Partner</div>
+                                    </div>
+                    </div>
+                </div>
+        
+        </div>
+        
+        <div class="background">
+                <br>
+               <div class="row">
+                   <div class="col"></div>
+                   <div class="col">
+                        <div class="card">
+                                <div class="card-body">
+                                    <div class="card-header">
+                                         <h3 style="color:white; font-size:40px; font-family: 'Orbitron', sans-serif; text-align:center;">
+                                                 Login
+                                         </h3>
+                                    </div>
+                                    <div class="card-text">
+                                        <form>
+                                                <div class="form-group">
+                                                        <label><h4>Username</h4></label>
+                                                        <input style="opacity:.5;" type="email" class="form-control" placeholder="Enter email">
+                                                </div>
+                                                <div class="form-group">
+                                                        <label><h4>Password</h4></label>
+                                                        <input style="opacity:.5;" type="password" class="form-control" placeholder="Password">
+                                                </div>
+                                                <div style="float:left;" class="form-check">
+                                                                <input type="checkbox" class="form-check-input">
+                                                                <label class="form-check-label"><h4 style="color:white;">Keep me Logged in</h4></label>
+                                                </div>
+                                                <div>
+                                                                <a style="float:right;" href="#"> <h4 style="color:white;">Forgot Password </h4></a>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <button style="display: block;
+                                                                margin-left: auto;
+                                                                margin-right: auto;
+                                                                text-align: center;" type="submit" class="btn btn-primary"><h5>Submit</h5></button>
+                                        </form>
                                         <br>
                                         <br>
-                                                <google-signin></google-signin>
+                                        <label style="text-align:center; display: block; margin-left: auto;margin-right: auto; color:white;"><h6> Or <br> Sign In Using </h6></label>
+                                        <div style="display: block;
+                                                margin-left: auto;
+                                                margin-right: auto;
+                                                text-align: center;"> 
+                                                <br>
+                                                <br>
+                                                <button (click)=stepIn() id="googleBtn" class="loginBtn loginBtn--google">Enter using Google</button>
+        
+                                        </div>
+                                        <div *ngIf="isLoggedIn">
+                                                <label style="text-align:center; display: block; margin-left: auto;margin-right: auto; color:white;"><h6> Successfully Signed in <br> Login using Google now ! </h6></label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    
-
-
-           </div>
-           <div class="col"></div>
-       </div>
-
-
-
+        
+                            
+        
+        
+                   </div>
+                   <div class="col"></div>
+               </div>
+        
+        
+        
+        </div>
+        
+        <br>
+        
+        
+        
+        
+        
+        
 </div>
-
-<br>
-
-
-
-
-

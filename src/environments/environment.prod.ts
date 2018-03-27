@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyCIvwzeMdosBqQ9Jdx5ASaSdOZXf6CH6hg",
-    authDomain: "my-project-1521997139960.firebaseapp.com",
-    databaseURL: "https://my-project-1521997139960.firebaseio.com",
-    projectId: "my-project-1521997139960",
+    apiKey: "AIzaSyBkxZ6L9NNZ4Af-zVCBzTE5Syz19fS9sEo",
+    authDomain: "citywiz-c9dea.firebaseapp.com",
+    databaseURL: "https://citywiz-c9dea.firebaseio.com",
+    projectId: "citywiz-c9dea",
     storageBucket: "",
-    messagingSenderId: "753072796788"
+    messagingSenderId: "337895306628"
   }
 };

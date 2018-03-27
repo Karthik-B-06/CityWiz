@@ -3,123 +3,10 @@ import { AppComponent } from '../app.component';
 import { Http } from '@angular/http';
 import { AngularFireDatabase } from 'angularfire2/database';
 import {Router} from "@angular/router";
-declare const gapi: any;
-
-@Component({
-  selector: 'google-signin',
-  template: '<button (click)=stepIn() id="googleBtn" class="loginBtn loginBtn--google">Enter using Google</button>',
-  styles: [ 
-    `.loginBtn {
-    box-sizing: border-box;
-    position: relative;
-    /* width: 13em;  - apply for fixed size */
-    margin: 0.2em;
-    padding: 0 15px 0 46px;
-    border: none;
-    text-align: left;
-    line-height: 34px;
-    white-space: nowrap;
-    border-radius: 0.2em;
-    font-size: 16px;
-    color: white;
-  }`,
-  `.loginBtn.loginBtn--google {
-      box-sizing: border-box;
-      position: relative;
-      margin: 0.2em;
-      padding: 0 15px 0 46px;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      line-height: 34px; white-space: nowrap; border-radius: 0.2em; font-size: 16px; color: white;
-  }`, 
-  `.loginBtn:before {
-    content: "";
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 34px;
-    height: 100%;
-  }`,
-  `.loginBtn:focus {
-    outline: none;
-  }`,
-  `.loginBtn:active {
-    box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
-  }`,
-  `.loginBtn.loginBtn--google:before {
-      border-right: #BB3F30 1px solid;
-      background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
-  }`, 
-    `.loginBtn--google {
-    background: #DD4B39;
-  }`
-  ]
-})
-export class GoogleSigninComponent implements AfterViewInit {
-
-  private clientId:string = '1086524363400-ia4hs2qee3ovd3c1g4cltak68eip1pfp.apps.googleusercontent.com';
-  public stepIn() {
-  }
-  private scope = [
-    'profile',
-    'email',
-    'https://www.googleapis.com/auth/plus.me',
-    'https://www.googleapis.com/auth/contacts.readonly',
-    'https://www.googleapis.com/auth/admin.directory.user.readonly'
-  ].join(' ');
-
-  public auth2: any;
-  public googleInit() {
-    let that = this;
-    gapi.load('auth2', function () {
-      that.auth2 = gapi.auth2.init({
-        client_id: that.clientId,
-        cookiepolicy: 'single_host_origin',
-        scope: that.scope
-      });
-      that.attachSignin(that.element.nativeElement.firstChild);
-    });
-  }
-  
-  public attachSignin(element) {
-    let that = this;
-    
-
-    this.auth2.attachClickHandler(element, {},
-      function (googleUser) {
-        let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        //YOUR CODE HERE
-        
-        localStorage.setItem("Id", profile.getId());
-        localStorage.setItem("Name", profile.getName());
-        localStorage.setItem("ImageUrl", profile.getImageUrl());
-        localStorage.setItem("Email", profile.getEmail());
-        
-      }, function (error) {
-        console.log(JSON.stringify(error, undefined, 2));
-        this.router.navigate(['login']);
-      });
-      
-  }
-
-  constructor(private element: ElementRef, private router: Router) {
-    
-    console.log('ElementRef: ', this.element);
-  }
-
-  ngAfterViewInit() {
-    this.googleInit();
-  }
-
-
-}
+import { AuthService } from '../services/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-login',
@@ -127,10 +14,29 @@ export class GoogleSigninComponent implements AfterViewInit {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private _http: Http) { 
+  isLoggedIn : boolean = false;
+  constructor(private router: Router, private service: AuthService) { 
   }
   ngOnInit() {
+    
+  }
+  stepIn() {
+    if(this.service.isLoggedIn()) {
+      this.router.navigate(['user']);      
+    }
+    else {
+      this.service.signInWithGoogle();
+      
+      if(this.isLoggedIn) {
+        setTimeout( function(){
+          alert("Successfully Signed in ! Login using Google Now ..");
+        },10000 );
+        
+      }
+    }
+    while(!this.isLoggedIn)
+      this.isLoggedIn = this.service.isLoggedIn();
+      console.log(this.isLoggedIn);                                                                                             
   }
 
 }

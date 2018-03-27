@@ -4,10 +4,11 @@
   <br>
   <br>
   <br>
-  <img [src]="image">
+  <img [src]="user.imageUrl">
 
-  <h3> Hi {{name}} </h3>
-  <h4> Email Id : {{email}} </h4>
+  <h3> Hi {{user.displayName}} </h3>
+  <h4> Email Id : {{user.email}} </h4>
 
   <button  style="float: right;" (click)=signOut() class="btn btn-secondary">Sign Out</button>
 </div>
+
